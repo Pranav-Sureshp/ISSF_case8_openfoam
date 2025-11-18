@@ -21,7 +21,7 @@ B_y(x) = \frac{1}{2}B_0\left(1-\tanh\left(\frac{|x|-0.7315}{0.1} \right)\right)
 | Half-width | $a$ | $23$ | $\rm mm$ |
 | Axial length | $d$ | $3$ | $\rm m$ |
 | Uniform wall thickness | $t_w$ | $2$ | $\rm mm$ |
-| Uniform inlet temperature | T_in | $300$ | $\rm\degree C$ |
+| Uniform inlet temperature | $T_{in}$ | $300$ | $\rm\degree C$ |
 | Applied heat flux | $q''$ | $0.04$ | $\rm MW\cdot m^{-2}$ |
 | Peak field strength | $B_0$ | $0.5$ | $\rm T$ |
 | Uniform inlet velocity | $u_{inlet}$ | $0.03$ | $\rm m\cdot s^{-1}$ |
