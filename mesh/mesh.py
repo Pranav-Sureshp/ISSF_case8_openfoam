@@ -16,12 +16,14 @@ meshname_solid = "solid_submap"
 high_order = True
 if high_order:
   polynomial_order = 7
-  first_layer_multiplier = 0.5
+  bl_growth_rate = 1.15
+  first_layer_multiplier = 0.2
   num_qps_in_first_layer = 1
   meshname_fluid = meshname_fluid + "_nekRS"
   meshname_solid = meshname_solid + "_nekRS"
 else:
   polynomial_order = 1
+  bl_growth_rate = 1.15
   first_layer_multiplier = 1/7
   num_qps_in_first_layer = 1
   meshname_fluid = meshname_fluid + "_OpenFOAM"
@@ -33,6 +35,7 @@ ref_length = 23/1000
 
 # Set geometry parameters
 # Note on orientation:
+# Initial mesh set up is oriented as though
 # u_in=(0,0,u_in)
 # B_0=(B_0,0,0)
 # need to rotate!!!
@@ -67,7 +70,7 @@ FLT = first_layer_multiplier * HL
 BL = 5 * SL
 
 # Growth rate
-gr = 1.15
+gr = bl_growth_rate
 
 # Number of layers
 Num_of_layers = np.ceil(np.log(1 - (BL * (1 - gr)) / FLT) / np.log(gr))
@@ -159,6 +162,10 @@ cubit.cmd('compress') # minimise all ID numbers
 cubit.cmd(f'brick x {L_x_solid} y {L_y_solid} z {heater_len}')
 
 # Rotate to align with coordinate system
+# u_in=(u_in,0,0)
+# B_0=(0,B_0,0)
+# g=(0,0,-g)
+# heat flux applied to solid exterior at z=-(a+t_w)
 cubit.cmd('rotate volume all angle 90 about y include_merged')
 
 # Note, at this point:
