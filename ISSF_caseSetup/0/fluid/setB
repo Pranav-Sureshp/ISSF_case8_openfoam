@@ -1,0 +1,47 @@
+magneticField #codeStream
+{
+  code #{
+  
+    double Bzero = 0.50;
+    double sigma_x = 0.1 ;
+    double k = 0.0080; 
+    double x_c = 0.7315;
+    double y_c = 0.0;
+
+
+    const IOdictionary& d = static_cast<const IOdictionary&>(dict);
+    const fvMesh& mesh = refCast<const fvMesh>(d.db());
+    vectorField fld(mesh.nCells(), vector(0.0, 0.0, 0.0));//vector velocity
+    
+    // to set a position-dependent value
+    forAll(mesh.C(), i)
+    {
+      double x = mesh.C()[i].x();
+      double y = mesh.C()[i].y();
+      double upper = ( Bzero/2.0 ) * (1.0 - tanh((abs(x) - x_c)/sigma_x)) ;
+      double lower = 1.0  ;
+      double B  = upper/lower;
+      fld[i] = vector( 0.0, B , 0.0);
+     }
+
+      fld.writeEntry("", os);
+    
+    #};
+  
+  codeInclude
+  #{
+  #include "fvCFD.H"
+  #};
+  
+  codeOptions
+  #{
+      -I$(LIB_SRC)/finiteVolume/lnInclude \
+      -I$(LIB_SRC)/meshTools/lnInclude
+  #};
+  codeLibs
+  #{
+      -lfiniteVolume \
+      -lmeshTools
+  #};
+};
+#inputMode merge;

@@ -18,6 +18,7 @@ log.*
 *.exo
 *.e
 *.cub5
+*.msh
 
 # editors
 .vscode

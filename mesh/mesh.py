@@ -1,8 +1,8 @@
-import cubit
 import sys
 import numpy as np
-
-sys.path.append("../nekrs_mhd_examples/python")
+sys.path.append('/home/pranav/softwares/Coreform-Cubit-2025.8+61943-Lin64/Coreform-Cubit-2025.8/bin')
+sys.path.append("/home/pranav/repos/nekrs_mhd_examples/python")
+import cubit
 import boundary_layer_high_order_convert as bl
 
 cubit.cmd('reset')
@@ -10,10 +10,10 @@ cubit.cmd('reset')
 ### User Settings ###
 
 # Set exodus file names
-meshname_fluid = "fluid_submap"
-meshname_solid = "solid_submap"
+meshname_fluid = "fluid"
+meshname_solid = "solid"
 
-high_order = True
+high_order = False
 if high_order:
   polynomial_order = 7
   bl_growth_rate = 1.15
@@ -301,9 +301,30 @@ cubit.cmd('mesh surface 14 17 23 28 30 35 38 41')
 
 # Sweep mesh through volume
 
+
+
 # defaults to sweep
 cubit.cmd('mesh volume 1')
 cubit.cmd('mesh volume 2 to 9')
+
+
+
+# set element type
+#cubit.cmd('block 1 element type hex20')
+#cubit.cmd('block 2 element type hex20')
+
+# cubit cmd
+cubit.cmd('block 1 name "fluid"')
+cubit.cmd('block 2 name "solid"')
+
+# assign Mesh block region
+cubit.cmd('create media')
+cubit.cmd('modify media 1 name "fluid" ')
+cubit.cmd('create media')
+cubit.cmd('modify media 2 name "solid" ')
+cubit.cmd('block 1 media "fluid" ')
+cubit.cmd('block 2 media "solid" ')
+
 
 ### Nondimensionalise geometry and mesh length scale ###
 
@@ -312,6 +333,8 @@ cubit.cmd(f'volume all scale {1.0/ref_length}')
 ### Save mesh (exodus) ###
 
 cubit.cmd('set exodus netcdf4 off')
-cubit.cmd('set large exodus file on')
-cubit.cmd(f'export mesh "{meshname_fluid}.exo" block 1 overwrite')
-cubit.cmd(f'export mesh "{meshname_solid}.exo" block 2 overwrite')
+#cubit.cmd('set large exodus file off')
+#cubit.cmd(f'export mesh "{meshname_fluid}.exo" block 1 overwrite')
+#cubit.cmd(f'export mesh "{meshname_solid}.exo" block 2 overwrite')
+
+cubit.cmd('export fluent "./ISSF_8.msh"  overwrite  everything consolidate')

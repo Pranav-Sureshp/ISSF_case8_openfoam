@@ -1,0 +1,52 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1912                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      fvSolution;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+PIMPLE
+{
+    nOuterCorrectors 3; // Top level outer corrector
+    pRefCell 1001;
+    pRefValue 0;
+    TRefCell  573;
+    TRefValue 573;
+    
+     residualControl
+    {
+        p
+        {
+            relTol  0;
+            // if this tolerance is reached, leave
+            tolerance 1e-04;
+        }
+        U
+        {
+            relTol  0;
+            // if this tolerance is reached, leave
+            tolerance 1e-04;
+        }
+        T
+        {
+            relTol  0;
+            // if this tolerance is reached, leave
+            tolerance 1e-04;
+        }
+
+    }
+
+
+}
+
+
+// ************************************************************************* //

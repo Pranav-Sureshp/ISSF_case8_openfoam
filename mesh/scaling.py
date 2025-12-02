@@ -1,7 +1,7 @@
 import sys
 import numpy as np
 
-sys.path.append(r"../nekrs_mhd_examples/python")
+sys.path.append(r"/home/pranav/repos/nekrs_mhd_examples/python")
 import nekrs_mhd_calc as calc
 
 density_f = 9838.01

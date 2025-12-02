@@ -1,0 +1,95 @@
+## Cubit
+## Coreform Cubit Version 2025.8
+## Coreform Cubit Build 8a4fb806
+## Revised Wed Aug 20 10:48:33 2025 -0600
+## Running 11/25/2025 03:49:41 PM
+## Command Options:
+reset
+brick x 0.046 y 0.046 z 3
+brick x 0.05 y 0.05 z 3
+subtract volume 1 from volume 2 keep_tool
+webcut volume 2 with plane from surface 14
+webcut volume 2 with plane from surface 16
+webcut volume 2 3 with plane from surface 15
+webcut volume 2 3 with plane from surface 13
+imprint volume all
+merge volume all
+compress
+brick x 0.05 y 0.05 z 0.6
+rotate volume all angle 90 about y include_merged
+imprint volume all
+merge volume all
+delete volume 10
+sideset 1 add surface 2
+sideset 1 name "fluid_inlet"
+sideset 2 add surface 1
+sideset 2 name "fluid_outlet"
+sideset 3 add surface 49 50 51 52 53 54 55 56 57 58 59 60
+sideset 3 name "fs_interface"
+sideset 4 add surface 75 76 84 121 122 130 145 146 154
+sideset 4 add surface 63 72 111 112 133 134
+sideset 4 add surface 103 104 106 115 116 119 125 126 132
+sideset 4 add surface 87 88 94 137 138 144 149 150 156
+sideset 4 name "exterior"
+sideset 5 add surface 14 17 23 28 30 35 38 41
+sideset 5 name "solid_inlet"
+sideset 6 add surface 13 16 24 27 31 34 37 42
+sideset 6 name "solid_outlet"
+sideset 7 add surface 64 118 142
+sideset 7 name "heater"
+create boundary_layer 1
+modify boundary_layer 1 uniform height 1.39560970869533e-05 growth 1.15000000000015 layers 32
+modify boundary_layer 1 add surface 51 52 60 volume 1
+modify boundary_layer 1 add surface 53 54 58 volume 1
+modify boundary_layer 1 add surface 61 62 67 68 69 71 volume 2
+modify boundary_layer 1 add surface 73 74 79 80 81 83 volume 3
+modify boundary_layer 1 continuity off
+create boundary_layer 2
+modify boundary_layer 2 uniform height 1.39560970869533e-05 growth 1.15000000000015 layers 32
+modify boundary_layer 2 add surface 55 56 57 volume 1
+modify boundary_layer 2 add surface 49 50 59 volume 1
+modify boundary_layer 2 add surface 85 86 91 92 93 95 volume 4
+modify boundary_layer 2 add surface 99 100 101 102 107 108 volume 5
+modify boundary_layer 2 continuity off
+create boundary_layer 3
+modify boundary_layer 3 uniform height 1.39560970869533e-05 growth 1.15 layers 21
+modify boundary_layer 3 add surface 51 52 60 volume 2
+modify boundary_layer 3 add surface 53 54 58 volume 3
+modify boundary_layer 3 add surface 101 102 108 volume 6
+modify boundary_layer 3 add surface 99 100 107 volume 7
+modify boundary_layer 3 add surface 91 92 93 volume 8
+modify boundary_layer 3 add surface 85 86 95 volume 9
+modify boundary_layer 3 continuity off
+create boundary_layer 4
+modify boundary_layer 4 uniform height 1.39560970869533e-05 growth 1.15 layers 21
+modify boundary_layer 4 add surface 49 50 59 volume 5
+modify boundary_layer 4 add surface 55 56 57 volume 4
+modify boundary_layer 4 add surface 61 62 71 volume 6
+modify boundary_layer 4 add surface 73 74 83 volume 7
+modify boundary_layer 4 add surface 67 68 69 volume 8
+modify boundary_layer 4 add surface 79 80 81 volume 9
+modify boundary_layer 4 continuity off
+block 1 add volume 1
+block 2 add volume 2 to 9
+volume all size 0.0046
+surface 2 size 0.00106266660538733
+surface 14 17 23 28 30 35 38 41 size 0.00106266660538733
+surface 2 submap smooth off
+surface 2 scheme submap
+mesh surface 2
+surface 14 17 23 28 30 35 38 41 submap smooth off
+surface 14 17 23 28 30 35 38 41 scheme submap
+mesh surface 14 17 23 28 30 35 38 41
+mesh volume 1
+mesh volume 2 to 9
+block 1 name "fluid"
+block 2 name "solid"
+create media
+modify media 1 name "fluid"
+create media
+modify media 2 name "solid"
+block 1 media "fluid"
+block 2 media "solid"
+volume all scale 43.4782608695652
+set exodus netcdf4 off
+export fluent "./ISSF_8.msh" overwrite everything consolidate
