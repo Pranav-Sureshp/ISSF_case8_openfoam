@@ -36,16 +36,18 @@ boundaryField
     heater
     {
         type            fixedGradient;
-	gradient   -qw/k ;
+	gradient        -1960.8 ;      // -q/k_w = (0.04e+06 / 20.40 )
     }
-
     exterior
     {
         type            zeroGradient;
     }
     solid_to_fluid
     {
-        type        zeroGradient; // new BC
+       type                solidWallMixedTemperatureCoupled; // solidWallMixedTemperatureCoupled
+       neighbourFieldName          T;                                //
+       K                          K;
+       value                uniform $Tw ;
     }
    
 
