@@ -18,7 +18,7 @@ FoamFile
 
 5
 (
-    soild_to_fluid
+    solid_to_fluid
     {
         type            mappedWall;
         inGroups        1(wall);

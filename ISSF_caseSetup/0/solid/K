@@ -10,8 +10,8 @@ FoamFile
     version     2.0;
     format      ascii;
     class       volScalarField;
-    location    "0/fluid";
-    object      sigma;
+    location    "0/solid";
+    object      K;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
@@ -23,21 +23,30 @@ internalField   uniform $K ;
 
 boundaryField
 {
-    fluid_inlet
+    solid_inlet
     {
         type            zeroGradient;
     }
-    fluid_outlet
+    solid_outlet
     {
         type            zeroGradient;
     }
-    fluid_to_solid
+    solid_to_fluid
     {
         type            fixedValue;
         value           uniform $K ;
     }
 
-    
+    heater
+    {
+        type            zeroGradient;
+    }
+
+    exterior
+    {
+        type            zeroGradient;
+    }
+
 }
 
 

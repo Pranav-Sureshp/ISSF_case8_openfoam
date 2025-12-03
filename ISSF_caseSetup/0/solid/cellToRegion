@@ -22,7 +22,7 @@ internalField   uniform 1;
 
 boundaryField
 {
-    fs_interface
+    solid_to_fluid
     {
         type            zeroGradient;
     }

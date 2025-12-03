@@ -30,7 +30,7 @@ boundaryField
     {
         type            zeroGradient;
     }
-    fs_interface
+    fluid_to_solid
     {
         type            zeroGradient;
     }

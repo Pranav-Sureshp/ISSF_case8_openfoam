@@ -9,7 +9,7 @@ FoamFile
 {
     version     2.0;
     format      ascii;
-    class       volVectorField;
+    class       volScalarField;
     location    "0/fluid";
     object      T;
 }
@@ -18,16 +18,16 @@ FoamFile
 
 dimensions       [0 0 0 1 0 0 0];
 
-Tw  573.0 ;
 
-internalField   uniform $Tw;
+internalField   uniform 573.0 ;
+
 
 boundaryField
 {
     fluid_inlet
     {
         type        fixedValue;
-        value       uniform $Tw ;
+        value       uniform 573.0 ;
     }
 
     fluid_outlet
@@ -38,9 +38,9 @@ boundaryField
     fluid_to_solid
     {
        type            solidWallMixedTemperatureCoupled; // solidWallMixedTemperatureCoupled
-       neighbourFieldName         T;                                //
+       Tnbr            T;                                //
        K               K;
-       value           uniform $Tw ;
+       value           uniform 573.0 ;
     }
 }
 
