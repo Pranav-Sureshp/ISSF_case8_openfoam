@@ -14,7 +14,7 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-numberOfSubdomains 128;
+numberOfSubdomains  112;
 
 method          scotch;
 
@@ -32,7 +32,7 @@ constraints
     patches
     {
         type    preservePatches;
-        patches (inlet outlet);
+        patches (fluid_inlet fluid_outlet);
         enabled true;
     }
 }
