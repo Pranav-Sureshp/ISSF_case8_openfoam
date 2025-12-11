@@ -17,7 +17,8 @@ FoamFile
 solvers
 {
 
-    p
+//p 
+    p_rgh
     {
         solver          GAMG;
         tolerance       1e-06;
@@ -25,9 +26,9 @@ solvers
         smoother        GaussSeidel;
     }
 
-    pFinal
+    p_rghFinal
     {
-        $p;
+        $p_rgh;
         smoother        DICGaussSeidel;
         tolerance       1e-06;
         relTol          0;
@@ -62,6 +63,21 @@ solvers
        tolerance 1e-06;
     };
 
+//     "(p_rgh|g)"
+//    {
+//        solver           PCG;
+//        preconditioner   DIC;
+//        tolerance        1e-6;
+//        relTol           0.01;
+//    }
+//    
+//    "(p_rgh|g)Final"
+//    {
+//        solver           PCG;
+//        preconditioner   DIC;
+//        tolerance        1e-6;
+//        relTol           0;
+//    }
    
 }
 
@@ -81,12 +97,6 @@ PIMPLE
     
      residualControl
     {
-        p
-        {
-            relTol  0;
-            // if this tolerance is reached, leave
-            tolerance 1e-04;
-        }
         U
         {
             relTol  0;
@@ -99,7 +109,11 @@ PIMPLE
             // if this tolerance is reached, leave
             tolerance 1e-04;
         }
-
+        p_rgh
+        {
+            tolerance       1e-4;
+            relTol          0;
+        }
     }
 
 
@@ -109,9 +123,10 @@ relaxationFactors
 {
     fields
     {
-        p       0.7;
-        pFinal  0.9; // Last outer loop
-
+        p_rgh       0.8;
+//        p       0.8;
+//        pFinal  0.9; // Last outer loop
+        p_rghFinal  0.9; // Last outer loop
     }
     equations
     {

@@ -23,8 +23,9 @@ boundaryField
 {
     fluid_outlet
     {
-        type            fixedValue;
-        value           uniform 0;
+        type            zeroGradient ;
+//        type            fixedValue;
+//        value           uniform 0;
     }
     fluid_inlet
     {

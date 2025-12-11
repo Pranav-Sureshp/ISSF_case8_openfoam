@@ -34,7 +34,7 @@ boundaryField
     heater
     {
         type            fixedGradient;
-	gradient        uniform -1960.8 ;      // -q/k_w = (0.04e+06 / 20.40 )
+	gradient        uniform -1960.8 ;      // -q/k_w = (0.04e+06 / 20.40 ) // check if it is +ve 
     }
     exterior
     {
@@ -42,6 +42,8 @@ boundaryField
     }
     solid_to_fluid
     {
+
+//        type            zeroGradient;
        type                solidWallMixedTemperatureCoupled; // solidWallMixedTemperatureCoupled
        Tnbr                       T;                                //
        K                          K;

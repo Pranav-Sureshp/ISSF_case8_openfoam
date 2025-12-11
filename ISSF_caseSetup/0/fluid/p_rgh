@@ -17,14 +17,15 @@ FoamFile
 
 dimensions      [ 0 2 -2 0 0 0 0 ];
 
-internalField   uniform 4435.0 ;  // rho*g*2*a=9838.01*9.8*2*0.023
+//internalField   uniform 4435.0 ;  // rho*g*2*a=9838.01*9.8*2*0.023
+internalField   uniform  0.0 ;  // rho*g*2*a=9838.01*9.8*2*0.023
 
 boundaryField
 {
     fluid_outlet
     {
         type            fixedValue;
-        value           uniform 4435.0 ;
+        value           uniform 0.0 ;
     }
     fluid_inlet
     {

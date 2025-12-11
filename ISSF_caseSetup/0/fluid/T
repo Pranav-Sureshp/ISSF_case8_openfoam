@@ -37,6 +37,7 @@ boundaryField
 
     fluid_to_solid
     {
+//         type       zeroGradient;
        type            solidWallMixedTemperatureCoupled; // solidWallMixedTemperatureCoupled
        Tnbr            T;                                //
        K               K;

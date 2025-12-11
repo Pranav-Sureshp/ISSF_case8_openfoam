@@ -13,7 +13,7 @@ FoamFile
     object      fvSolution;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
-
+// only the outer corrector is read
 PIMPLE
 {
     nOuterCorrectors 3; // Top level outer corrector
@@ -29,6 +29,11 @@ PIMPLE
             relTol  0;
             // if this tolerance is reached, leave
             tolerance 1e-04;
+        }
+        p_rgh
+        {
+            tolerance       1e-4;
+            relTol          0;
         }
         U
         {
