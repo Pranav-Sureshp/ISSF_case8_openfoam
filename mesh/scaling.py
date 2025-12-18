@@ -29,7 +29,7 @@ gravity_orientation = (0, 0, -1)
 
 heat_flux = 0.04e6
 
-ref_temp = 300
+ref_temp = 573
 max_temp = ref_temp + heat_flux*a/thermal_conductivity_f
 
 permeability = 4e-7 * np.pi

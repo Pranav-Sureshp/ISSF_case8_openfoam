@@ -24,7 +24,7 @@ if high_order:
 else:
   polynomial_order = 1
   bl_growth_rate = 1.15
-  first_layer_multiplier = 1/7
+  first_layer_multiplier = 1/10
   num_qps_in_first_layer = 1
   meshname_fluid = meshname_fluid + "_OpenFOAM"
   meshname_solid = meshname_solid + "_OpenFOAM"
@@ -57,7 +57,7 @@ L_z_solid = L_z_fluid
 
 # Set mesh parameters as for a low-order mesh
 
-axial_mesh_size = 0.2*a
+axial_mesh_size = 0.15*a
 
 # Mesh parameters
 HL = a / Ha  # Hartmann layer
@@ -328,7 +328,7 @@ cubit.cmd('block 2 media "solid" ')
 
 ### Nondimensionalise geometry and mesh length scale ###
 
-cubit.cmd(f'volume all scale {1.0/ref_length}')
+#cubit.cmd(f'volume all scale {1.0/ref_length}')
 
 ### Save mesh (exodus) ###
 
