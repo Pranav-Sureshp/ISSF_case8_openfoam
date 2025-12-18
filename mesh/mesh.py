@@ -327,8 +327,8 @@ cubit.cmd('block 2 media "solid" ')
 
 
 ### Nondimensionalise geometry and mesh length scale ###
-
-#cubit.cmd(f'volume all scale {1.0/ref_length}')
+if high_order:
+  cubit.cmd(f'volume all scale {1.0/ref_length}')
 
 ### Save mesh (exodus) ###
 
